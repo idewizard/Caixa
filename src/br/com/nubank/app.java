@@ -1,9 +1,11 @@
 package br.com.nubank;
 
-public class app {
+public class App {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+
+
+		Cliente cliente = new Cliente("Jose maria","231312344",323);
 
 	}
 
