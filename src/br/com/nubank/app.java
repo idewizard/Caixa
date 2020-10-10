@@ -6,6 +6,8 @@ public class App {
 
 
 		Cliente cliente = new Cliente("Jose maria","231312344",323);
+		
+	
 
 	}
 

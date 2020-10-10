@@ -16,7 +16,7 @@ public class Cliente extends Pessoa{
 	
 	//todo criar metodo para validar senhar
 	
-	public void setSenha(short senha) {
+	protected void setSenha(short senha) {
 		this.senha = senha;
 	}
 	
