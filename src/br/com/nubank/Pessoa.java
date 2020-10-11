@@ -1,8 +1,17 @@
 package br.com.nubank;
 
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
+
+import javax.persistence.Table;
+
+@Table(name="pessoa")
 public abstract class Pessoa {
 
+	@Column(name="nome")
 	private String nome;
+	
+	@Column(name="cpf")
 	private String cpf;
 	
 	private void checaCPF(String cpf) {

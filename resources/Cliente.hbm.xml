@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Oct 10, 2020, 9:47:12 PM by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <subclass name="br.com.nubank.Cliente" extends="br.com.nubank.Pessoa" discriminator-value="Cliente" lazy="false">
+        <property name="numeroConta" type="int" access="field">
+            <column name="NUMEROCONTA" />
+        </property>
+        <property name="senha" type="int" access="field">
+            <column name="SENHA" />
+        </property>
+    </subclass>
+</hibernate-mapping>

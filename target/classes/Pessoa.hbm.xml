@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Oct 10, 2020, 9:47:12 PM by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="br.com.nubank.Pessoa" table="PESSOA" abstract="true">
+        <id name="nome" type="java.lang.String">
+            <column name="NOME" />
+            <generator class="assigned" />
+        </id>
+        <discriminator type="string">
+            <column name="DISCR_COL" />
+        </discriminator>
+        <property name="cpf" type="java.lang.String">
+            <column name="CPF" />
+        </property>
+    </class>
+</hibernate-mapping>
