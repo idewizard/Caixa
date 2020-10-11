@@ -22,18 +22,20 @@ import org.hibernate.annotations.ColumnTransformer;
 @Inheritance(strategy = InheritanceType.JOINED)
 @Table(name="cliente")
 public class Cliente extends Pessoa implements Serializable{
-
+	
+	public Cliente() {}
+	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 2130451720454395156L;
-
+	
 	public Cliente(String nome, String cpf, int senha) {
-		super(nome, cpf);		
+		super(nome, cpf);
 		this.senha = senha;
 	}
-	
-	@Id	
+
+	@Id
 	@Column(name="numero_conta")
 	private int numeroConta;
 	
@@ -52,6 +54,12 @@ public class Cliente extends Pessoa implements Serializable{
 	
 	protected void setSenha(int senha) {
 		this.senha = senha;
+	}
+
+	@Override
+	public String toString() {
+		return "Cliente [numeroConta = " + numeroConta + ", senha = " + senha + ", Nome = " + getNome() + ", Cpf = "
+				+ getCpf() + "]";
 	}
 	
 	

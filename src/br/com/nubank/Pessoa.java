@@ -21,7 +21,9 @@ public abstract class Pessoa implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = -3746137284757224724L;
-
+	
+	public Pessoa(){}
+	
 	@Column(name="cpf")
 	private String cpf;
 
