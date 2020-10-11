@@ -39,7 +39,7 @@ public class Cliente extends Pessoa implements Serializable{
 	
 	@Column(name="senha")
 	@ColumnTransformer(
-			read = "aes_decrypt(lastName, 'chaveSegurancaSenha')",
+			read = "aes_decrypt(senha, 'chaveSegurancaSenha')",
 			write = "aes_encrypt(?,'chaveSegurancaSenha')"
 	)
 	private int senha;
