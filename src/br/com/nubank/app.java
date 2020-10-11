@@ -13,9 +13,10 @@ public class App {
 	public static void main(String[] args) {
 
 
-		Cliente cliente = new Cliente("Jose maria","231312344",323);
-	    StandardServiceRegistry ssr = new StandardServiceRegistryBuilder().configure("hibernate.cfg.xml").build();  
-        
+		
+	    StandardServiceRegistry ssr = new StandardServiceRegistryBuilder()
+	    		.configure("hibernate.cfg.xml")
+	    		.build();        
 	    Metadata meta = new MetadataSources(ssr).getMetadataBuilder().build();  
 	   
 		SessionFactory factory = meta.getSessionFactoryBuilder().build();  

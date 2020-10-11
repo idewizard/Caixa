@@ -1,8 +1,10 @@
 package br.com.nubank;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
-
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Table(name="pessoa")
@@ -13,6 +15,13 @@ public abstract class Pessoa {
 	
 	@Column(name="cpf")
 	private String cpf;
+	
+	
+	@OneToOne(mappedBy = "pessoa", cascade = CascadeType.ALL)
+	@JoinColumn(name = "cpf", referencedColumnName = "cpf_cliente")
+	private Cliente cliente;
+	
+	
 	
 	private void checaCPF(String cpf) {
 		//TODO validar cpf

@@ -1,10 +1,13 @@
 package br.com.nubank;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.ColumnTransformer;
@@ -15,9 +18,10 @@ import org.hibernate.annotations.ColumnTransformer;
 @Table(name="cliente")
 public class Cliente extends Pessoa{
 
-	public Cliente(String nome, String cpf, int i) {
+	
+	public Cliente(String nome, String cpf, int senha) {
 		super(nome, cpf);		
-		this.senha = i;
+		this.senha = senha;
 	}
 	
 	@Id
@@ -32,13 +36,15 @@ public class Cliente extends Pessoa{
 	)
 	private int senha;
 	
+	private A
+	
 	public int getNumeroConta() {
 		return numeroConta;
 	}
 	
 	//todo criar metodo para validar senhar
 	
-	protected void setSenha(short senha) {
+	protected void setSenha(int senha) {
 		this.senha = senha;
 	}
 	
