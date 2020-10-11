@@ -1,11 +1,15 @@
 package br.com.nubank;
 
+import java.io.Serializable;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -15,20 +19,24 @@ import org.hibernate.annotations.ColumnTransformer;
 
 
 @Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 @Table(name="cliente")
-public class Cliente extends Pessoa{
+public class Cliente extends Pessoa implements Serializable{
 	
 	
-	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2130451720454395156L;
+
 	public Cliente(String nome, String cpf, int senha) {
 		super(nome, cpf);		
 		this.senha = senha;
 	}
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="numeroconta",updatable = false, nullable = false)
-	private int numeroConta = 0;
+	@Id	
+	@Column(name="numero_conta")
+	private int numeroConta;
 	
 	@Column(name="senha")
 	@ColumnTransformer(

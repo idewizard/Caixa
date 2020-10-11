@@ -12,8 +12,6 @@ public class App {
 
 	public static void main(String[] args) {
 
-
-		
 	    StandardServiceRegistry ssr = new StandardServiceRegistryBuilder()
 	    		.configure("hibernate.cfg.xml")
 	    		.build();        

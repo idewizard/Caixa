@@ -3,20 +3,23 @@ package br.com.nubank;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.MappedSuperclass;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-@Table(name="pessoa")
+@MappedSuperclass
 public abstract class Pessoa {
 	
-
+	@Id
+	@Column(name="cpf")
+	private String cpf;
 
 	@Column(name="nome")
 	private String nome;
 	
-	@Column(name="cpf")
-	private String cpf;
+	
 	
 	private void checaCPF(String cpf) {
 		//TODO validar cpf
