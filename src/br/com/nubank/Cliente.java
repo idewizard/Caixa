@@ -17,7 +17,9 @@ import org.hibernate.annotations.ColumnTransformer;
 @Entity
 @Table(name="cliente")
 public class Cliente extends Pessoa{
-
+	
+	@OneToOne(mappedBy = "cliente")	
+	private Cliente cliente;
 	
 	public Cliente(String nome, String cpf, int senha) {
 		super(nome, cpf);		
@@ -35,9 +37,7 @@ public class Cliente extends Pessoa{
 			write = "aes_encrypt(?,'chaveSegurancaSenha')"
 	)
 	private int senha;
-	
-	private A
-	
+		
 	public int getNumeroConta() {
 		return numeroConta;
 	}

@@ -9,19 +9,15 @@ import javax.persistence.Table;
 
 @Table(name="pessoa")
 public abstract class Pessoa {
+	
+	@OneToOne(mappedBy = "pessoa")
+	private Pessoa pessoa;
 
 	@Column(name="nome")
 	private String nome;
 	
 	@Column(name="cpf")
 	private String cpf;
-	
-	
-	@OneToOne(mappedBy = "pessoa", cascade = CascadeType.ALL)
-	@JoinColumn(name = "cpf", referencedColumnName = "cpf_cliente")
-	private Cliente cliente;
-	
-	
 	
 	private void checaCPF(String cpf) {
 		//TODO validar cpf
