@@ -18,8 +18,7 @@ import org.hibernate.annotations.ColumnTransformer;
 @Table(name="cliente")
 public class Cliente extends Pessoa{
 	
-	@OneToOne(mappedBy = "cliente")	
-	private Cliente cliente;
+	
 	
 	public Cliente(String nome, String cpf, int senha) {
 		super(nome, cpf);		

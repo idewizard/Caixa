@@ -10,8 +10,7 @@ import javax.persistence.Table;
 @Table(name="pessoa")
 public abstract class Pessoa {
 	
-	@OneToOne(mappedBy = "pessoa")
-	private Pessoa pessoa;
+
 
 	@Column(name="nome")
 	private String nome;
