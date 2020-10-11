@@ -21,7 +21,8 @@ public class App {
 		Session session = factory.openSession();  
 		Transaction t = session.beginTransaction();   
 		            
-		Cliente c1 = new Cliente("José Maria","123131",12345); 
+		Cliente c1 = new Cliente("José Maria","13123",4554);
+
 	  
 		    
 		session.save(c1);  

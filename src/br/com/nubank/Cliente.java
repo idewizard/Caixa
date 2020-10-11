@@ -22,8 +22,7 @@ import org.hibernate.annotations.ColumnTransformer;
 @Inheritance(strategy = InheritanceType.JOINED)
 @Table(name="cliente")
 public class Cliente extends Pessoa implements Serializable{
-	
-	
+
 	/**
 	 * 
 	 */

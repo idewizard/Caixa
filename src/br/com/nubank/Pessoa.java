@@ -1,29 +1,32 @@
 package br.com.nubank;
 
+import java.io.Serializable;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
+import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @MappedSuperclass
-public abstract class Pessoa {
-	
-	@Id
+public abstract class Pessoa implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3746137284757224724L;
+
 	@Column(name="cpf")
 	private String cpf;
 
 	@Column(name="nome")
 	private String nome;
-	
-	
-	
-	private void checaCPF(String cpf) {
-		//TODO validar cpf
-	}
 	
 	public Pessoa(String nome, String cpf) {
 		super();
