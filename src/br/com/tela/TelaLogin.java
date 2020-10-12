@@ -1,4 +1,4 @@
-package tela;
+package br.com.tela;
 
 import java.awt.EventQueue;
 
@@ -8,7 +8,6 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JPasswordField;
 import javax.swing.JLabel;
-import java.awt.Dialog.ModalExclusionType;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 

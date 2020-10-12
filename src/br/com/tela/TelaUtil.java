@@ -1,4 +1,4 @@
-package tela;
+package br.com.tela;
 
 import javax.swing.JFrame;
 
