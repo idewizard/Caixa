@@ -56,7 +56,6 @@ public class TelaLogin {
 		frmNubranco.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmNubranco.getContentPane().setLayout(null);
 		
-		
 		JPanel panel = new JPanel();
 		panel.setBounds(0, 0, 170, 160);
 		frmNubranco.getContentPane().add(panel);

@@ -34,6 +34,10 @@ public class Cliente extends Pessoa implements Serializable{
 		super(nome, cpf);
 		this.senha = senha;
 	}
+	
+	public Cliente(int numeroConta) {		
+		this.numeroConta = numeroConta;
+	}
 
 	@Id
 	@Column(name="numero_conta")

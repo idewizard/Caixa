@@ -8,6 +8,7 @@ import java.awt.event.WindowEvent;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
@@ -16,6 +17,8 @@ import br.com.db.HibernateUtil;
 
 import java.awt.BorderLayout;
 import javax.swing.JTextField;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class TelaHibrida {
 
@@ -26,11 +29,13 @@ public class TelaHibrida {
 	private JLabel labelCifrao;
 	private JLabel labelNumeroConta;
 	private JLabel lblNewLabel;
-	private JTextField textField;
-	private JTextField textField_1;
+	private JTextField contaDestinoTextField;
+	private JTextField valorTextField;
 	private ClienteTemporario clienteTemporario;
 	private JLabel lblValor;
 	private String textoHibrido;
+	private TelaUtil telaUtil;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -52,11 +57,10 @@ public class TelaHibrida {
 	 * @param acao 
 	 */
 	public TelaHibrida(String acao, ClienteTemporario clienteTemporario) {
+		telaUtil = new TelaUtil();
 		this.textoHibrido = acao;
 		this.clienteTemporario = clienteTemporario;
 		initialize();
-		
-		
 	}
 
 	/**
@@ -109,19 +113,27 @@ public class TelaHibrida {
 		lblValor.setBounds(247, 58, 90, 14);
 		panel.add(lblValor);
 		
-		textField = new JTextField();
-		textField.setBounds(101, 55, 86, 20);
-		panel.add(textField);
-		textField.setColumns(10);
+		contaDestinoTextField = new JTextField();
+		contaDestinoTextField.setBounds(101, 55, 86, 20);
+		panel.add(contaDestinoTextField);
+		contaDestinoTextField.setColumns(10);
 		
 		JButton btnNewButton = new JButton(textoHibrido);
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				telaUtil.efetuaAcaoHibrida(Double.parseDouble(valorTextField.getText()), clienteTemporario, textoHibrido);
+			
+				
+			}
+		});
 		btnNewButton.setBounds(10, 86, 414, 54);
 		panel.add(btnNewButton);
 		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(338, 55, 86, 20);
-		panel.add(textField_1);
+		valorTextField = new JTextField();
+		valorTextField.setColumns(10);
+		valorTextField.setBounds(338, 55, 86, 20);
+		panel.add(valorTextField);
 		
 		
 	}

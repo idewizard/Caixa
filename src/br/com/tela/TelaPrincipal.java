@@ -141,6 +141,7 @@ public class TelaPrincipal {
 				
 				telaUtil.constroiTelaHibrida(LBL_TRANSFERIR, clienteTemporario);
 				
+				
 			}
 		});
 		btnNewButton_2.setFont(new Font("Tahoma", Font.PLAIN, 14));
