@@ -8,6 +8,7 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 
+import br.com.db.ClienteTemporario;
 import br.com.db.HibernateUtil;
 
 import javax.swing.JButton;
@@ -18,13 +19,22 @@ import java.awt.event.ActionEvent;
 
 public class TelaPrincipal {
 
+	private static final String LBL_TRANSFERIR = "TRANSFERIR";
+	private static final String LBL_DEPOSITAR = "DEPOSITAR";
+	private static final String LBL_SACAR = "SACAR";
 	private JFrame frame;
 	private JLabel labelSaldo;
 	private JLabel labelConta;
 	private JLabel labelNomeCliente;
 	private JLabel labelCifrao;
 	private JLabel labelNumeroConta;
-
+	private ClienteTemporario clienteTemporario;
+	private TelaUtil telaUtil;
+	private JButton btnNewButton;
+	private JButton btnNewButton_1;
+	private JButton btnNewButton_2;
+	
+	
 	/**
 	 * Launch the application.
 	 */
@@ -32,7 +42,6 @@ public class TelaPrincipal {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					//TelaPrincipal window = new TelaPrincipal(this.saldo, this.conta, this.nome);
 					tela.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -43,13 +52,13 @@ public class TelaPrincipal {
 
 
 
-	public TelaPrincipal(double labelSaldo, int labelConta, String labelNomeCliente) {
-		
-		initialize();		
-		this.labelSaldo.setText(String.valueOf(labelSaldo));
-		this.labelNumeroConta.setText(String.valueOf(labelConta));
-		this.labelNomeCliente.setText(labelNomeCliente);
+	public TelaPrincipal(ClienteTemporario clienteTemporario) {
+		telaUtil = new TelaUtil();
+		this.clienteTemporario = clienteTemporario;
+		initialize();			
 	}
+
+
 
 	/**
 	 * Initialize the contents of the frame.
@@ -76,7 +85,7 @@ public class TelaPrincipal {
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
 		
-		labelSaldo = new JLabel("5,485.55");
+		labelSaldo = new JLabel(String.valueOf(clienteTemporario.getSaldo()));
 		labelSaldo.setHorizontalAlignment(SwingConstants.RIGHT);
 		labelSaldo.setFont(new Font("Tahoma", Font.BOLD, 12));
 		labelSaldo.setBounds(302, 11, 122, 14);
@@ -87,7 +96,7 @@ public class TelaPrincipal {
 		labelConta.setBounds(10, 30, 46, 14);
 		panel.add(labelConta);
 		
-		labelNomeCliente = new JLabel("Jos\u00E9 Francisco da Costa");
+		labelNomeCliente = new JLabel(clienteTemporario.getNome());
 		labelNomeCliente.setFont(new Font("Tahoma", Font.BOLD, 12));
 		labelNomeCliente.setBounds(10, 11, 288, 14);
 		panel.add(labelNomeCliente);
@@ -97,22 +106,43 @@ public class TelaPrincipal {
 		labelCifrao.setBounds(274, 11, 26, 14);
 		panel.add(labelCifrao);
 		
-		labelNumeroConta = new JLabel("2154");
+		labelNumeroConta = new JLabel(String.valueOf(clienteTemporario.getNumeroConta()));
 		labelNumeroConta.setFont(new Font("Tahoma", Font.BOLD, 12));
 		labelNumeroConta.setBounds(54, 31, 46, 14);
 		panel.add(labelNumeroConta);
 		
-		JButton btnNewButton = new JButton("SACAR");
+		btnNewButton = new JButton(LBL_SACAR);
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				telaUtil.constroiTelaHibrida(LBL_SACAR, clienteTemporario);
+				
+			}
+		});
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnNewButton.setBounds(10, 56, 414, 23);
 		panel.add(btnNewButton);
 		
-		JButton btnNewButton_1 = new JButton("DEPOSITAR");
+		btnNewButton_1 = new JButton(LBL_DEPOSITAR);
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				telaUtil.constroiTelaHibrida(LBL_DEPOSITAR, clienteTemporario);
+				
+			}
+		});
 		btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnNewButton_1.setBounds(11, 90, 413, 23);
 		panel.add(btnNewButton_1);
 		
-		JButton btnNewButton_2 = new JButton("TRANSFERIR");
+		btnNewButton_2 = new JButton(LBL_TRANSFERIR);
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				telaUtil.constroiTelaHibrida(LBL_TRANSFERIR, clienteTemporario);
+				
+			}
+		});
 		btnNewButton_2.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnNewButton_2.setBounds(10, 124, 414, 23);
 		panel.add(btnNewButton_2);

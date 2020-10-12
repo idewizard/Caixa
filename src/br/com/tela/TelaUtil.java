@@ -10,6 +10,8 @@ public class TelaUtil {
 	
 
 	private HibernateUtil hb;
+	private TelaPrincipal telaPrincipal;
+	private TelaHibrida telaHibrida;
 	
 	//passa login e senha e a janela 
 	public void checaLogin(int numeroConta, int senha, JFrame frame) {		
@@ -22,14 +24,19 @@ public class TelaUtil {
 		if (!(clienteTemporario == null)) {
 			JOptionPane.showMessageDialog(null, "Bem Vindo!");
 			frame.dispose();
-			TelaPrincipal telaPrincipal = new TelaPrincipal(clienteTemporario.getSaldo(),
-					clienteTemporario.getNumeroConta(),
-					clienteTemporario.getNome());
+			telaPrincipal = new TelaPrincipal(clienteTemporario);
 			telaPrincipal.iniciaTela(telaPrincipal);			
 		}else {
 			hb.closeConections();
 			JOptionPane.showMessageDialog(null, "Login ou senha incorretos");
 		}
+		
+	}
+	
+	public void constroiTelaHibrida(String acao, ClienteTemporario clienteTemporario) {
+		
+		telaHibrida = new TelaHibrida(acao.toUpperCase(),clienteTemporario);
+		telaHibrida.iniciaTela(telaHibrida);
 		
 	}
 	
