@@ -27,6 +27,7 @@ public class TelaLogin {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+					
 					TelaLogin window = new TelaLogin();
 					window.frmNubranco.setVisible(true);
 				} catch (Exception e) {
@@ -39,9 +40,8 @@ public class TelaLogin {
 	/**
 	 * Create the application.
 	 */
-	public TelaLogin() {
-		
-		telaUtil = new TelaUtil();
+	public TelaLogin() {		
+		this.telaUtil = new TelaUtil();
 		initialize();
 	}
 
@@ -72,8 +72,7 @@ public class TelaLogin {
 				telaUtil.checaLogin(
 						Integer.parseInt(numeroContaTextField.getText()), 
 						Integer.parseInt(String.valueOf(senhaField.getPassword())),
-						frmNubranco);
-				
+						frmNubranco);				
 			}
 		});
 		

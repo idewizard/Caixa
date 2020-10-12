@@ -24,7 +24,7 @@ public class TelaPrincipal {
 	private static final String LBL_TRANSFERIR = "TRANSFERIR";
 	private static final String LBL_DEPOSITAR = "DEPOSITAR";
 	private static final String LBL_SACAR = "SACAR";
-	private static JFrame frame;
+	private JFrame frame;
 	private JLabel labelSaldo;
 	private JLabel labelConta;
 	private JLabel labelNomeCliente;
@@ -35,7 +35,7 @@ public class TelaPrincipal {
 	private JButton btnNewButton;
 	private JButton btnNewButton_1;
 	private JButton btnNewButton_2;
-	private static JPanel panel;
+	private JPanel panel;
 	
 	
 	/**
@@ -55,7 +55,7 @@ public class TelaPrincipal {
 
 
 	public TelaPrincipal(ClienteTemporario clienteTemporario) {
-		telaUtil = new TelaUtil();
+		this.telaUtil = new TelaUtil();
 		this.clienteTemporario = clienteTemporario;
 		initialize();			
 	}
@@ -66,6 +66,7 @@ public class TelaPrincipal {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.setResizable(false);
 		frame.setBounds(100, 100, 450, 200);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);

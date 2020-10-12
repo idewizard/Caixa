@@ -20,7 +20,7 @@ import java.awt.event.ActionEvent;
 
 public class TelaHibrida {
 
-	private static JFrame frmHibrido;
+	private JFrame frmHibrido;
 	private JLabel labelSaldo;
 	private JLabel labelConta;
 	private JLabel labelNomeCliente;
@@ -33,7 +33,6 @@ public class TelaHibrida {
 	private JLabel lblValor;
 	private String textoHibrido;
 	private TelaUtil telaUtil;
-	private TelaPrincipal telaPrincipal;
 	/**
 	 * Launch the application.
 	 */
@@ -53,21 +52,23 @@ public class TelaHibrida {
 	 * Create the application.
 	 * @param clienteTemporario 
 	 * @param acao 
+	 * @param telaUtil 
 	 */
 	public TelaHibrida(String acao, ClienteTemporario clienteTemporario) {
-		telaUtil = new TelaUtil();
+		this.telaUtil = new TelaUtil();
 		this.textoHibrido = acao;
 		this.clienteTemporario = clienteTemporario;
 		initialize();
 	}
 	
-	public TelaHibrida() {}
+
 	
 	/**
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
 		frmHibrido = new JFrame();
+		frmHibrido.setResizable(false);
 		frmHibrido.setTitle(textoHibrido);
 		frmHibrido.setBounds(100, 100, 450, 200);
 		frmHibrido.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -123,8 +124,7 @@ public class TelaHibrida {
 			public void actionPerformed(ActionEvent e) {
 				
 				telaUtil.efetuaAcaoHibrida(Double.parseDouble(valorTextField.getText()), clienteTemporario, textoHibrido);
-			
-				
+							
 			}
 		});
 		btnNewButton.setBounds(10, 86, 414, 54);

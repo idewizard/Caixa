@@ -3,7 +3,6 @@ package br.com.tela;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-import com.sun.istack.Nullable;
 
 import br.com.db.ClienteTemporario;
 import br.com.db.HibernateUtil;
@@ -11,13 +10,20 @@ import br.com.nubank.BancoUtil;
 
 public class TelaUtil {
 	
-
 	private HibernateUtil hb;
 	private TelaPrincipal telaPrincipal;
 	private TelaHibrida telaHibrida;
+	private TelaUtil telaUtil;
 	
+
+	
+	public TelaUtil() {
+		// TODO Auto-generated constructor stub
+	}
+
 	//passa login e senha e a janela 
-	public void checaLogin(int numeroConta, int senha, JFrame frame) {		
+	public void checaLogin(int numeroConta, int senha, JFrame frame) {	
+		
 		hb = new HibernateUtil();		
 			
 		//passa senha e numero da conta para checar, caso confirmado
@@ -28,7 +34,7 @@ public class TelaUtil {
 			JOptionPane.showMessageDialog(null, "Bem Vindo!");
 			frame.dispose();
 			this.telaPrincipal = new TelaPrincipal(clienteTemporario);
-			telaPrincipal.iniciaTela(telaPrincipal);			
+			this.telaPrincipal.iniciaTela(telaPrincipal);			
 		}else {
 			hb.closeConections();
 			JOptionPane.showMessageDialog(null, "Login ou senha incorretos");
@@ -38,15 +44,15 @@ public class TelaUtil {
 	
 	public void constroiTelaHibrida(String acao, ClienteTemporario clienteTemporario) {
 		this.telaHibrida = new TelaHibrida(acao.toUpperCase(),clienteTemporario);
-		telaHibrida.iniciaTela(telaHibrida);
-		
+		this.telaHibrida.iniciaTela(telaHibrida);		
 	}
 	
 	protected void efetuaAcaoHibrida(double valor, ClienteTemporario cliente, String acao, Integer... contaDestino) {
 		
 		final BancoUtil bancoUtil = new BancoUtil();
 		if(bancoUtil.efetuaAcao(valor, cliente, acao, contaDestino)) {
-			
+			System.out.println(this.telaPrincipal);
+			System.out.println(this.telaHibrida);
 		}
 		
 		
