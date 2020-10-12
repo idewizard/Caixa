@@ -13,16 +13,14 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import br.com.db.ClienteTemporario;
-import br.com.db.HibernateUtil;
 
-import java.awt.BorderLayout;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class TelaHibrida {
 
-	private static JFrame frmTransferir;
+	private static JFrame frmHibrido;
 	private JLabel labelSaldo;
 	private JLabel labelConta;
 	private JLabel labelNomeCliente;
@@ -35,7 +33,7 @@ public class TelaHibrida {
 	private JLabel lblValor;
 	private String textoHibrido;
 	private TelaUtil telaUtil;
-	private static TelaPrincipal telaPrincipal;
+	private TelaPrincipal telaPrincipal;
 	/**
 	 * Launch the application.
 	 */
@@ -43,7 +41,7 @@ public class TelaHibrida {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {					
-					telaHibrida.frmTransferir.setVisible(true);
+					telaHibrida.frmHibrido.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -62,21 +60,23 @@ public class TelaHibrida {
 		this.clienteTemporario = clienteTemporario;
 		initialize();
 	}
-
+	
+	public TelaHibrida() {}
+	
 	/**
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frmTransferir = new JFrame();
-		frmTransferir.setTitle(textoHibrido);
-		frmTransferir.setBounds(100, 100, 450, 200);
-		frmTransferir.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frmTransferir.getContentPane().setLayout(null);
+		frmHibrido = new JFrame();
+		frmHibrido.setTitle(textoHibrido);
+		frmHibrido.setBounds(100, 100, 450, 200);
+		frmHibrido.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmHibrido.getContentPane().setLayout(null);
 	
 		
 		JPanel panel = new JPanel();
 		panel.setBounds(0, 0, 434, 170);
-		frmTransferir.getContentPane().add(panel);
+		frmHibrido.getContentPane().add(panel);
 		panel.setLayout(null);
 		
 		labelSaldo = new JLabel(String.valueOf(clienteTemporario.getSaldo()));
@@ -138,10 +138,5 @@ public class TelaHibrida {
 		
 	}
 	
-	public static void acaoBemSucedida(ClienteTemporario clienteTemporario) {
-		frmTransferir.dispose();
-		telaPrincipal = new TelaPrincipal(clienteTemporario);
-		telaPrincipal.iniciaTela(telaPrincipal);
-	}
 	
 }

@@ -27,7 +27,7 @@ public class TelaUtil {
 		if (!(clienteTemporario == null)) {
 			JOptionPane.showMessageDialog(null, "Bem Vindo!");
 			frame.dispose();
-			telaPrincipal = new TelaPrincipal(clienteTemporario);
+			this.telaPrincipal = new TelaPrincipal(clienteTemporario);
 			telaPrincipal.iniciaTela(telaPrincipal);			
 		}else {
 			hb.closeConections();
@@ -37,8 +37,7 @@ public class TelaUtil {
 	}
 	
 	public void constroiTelaHibrida(String acao, ClienteTemporario clienteTemporario) {
-		
-		telaHibrida = new TelaHibrida(acao.toUpperCase(),clienteTemporario);
+		this.telaHibrida = new TelaHibrida(acao.toUpperCase(),clienteTemporario);
 		telaHibrida.iniciaTela(telaHibrida);
 		
 	}
@@ -46,7 +45,9 @@ public class TelaUtil {
 	protected void efetuaAcaoHibrida(double valor, ClienteTemporario cliente, String acao, Integer... contaDestino) {
 		
 		final BancoUtil bancoUtil = new BancoUtil();
-		bancoUtil.efetuaAcao(valor, cliente, acao, contaDestino);
+		if(bancoUtil.efetuaAcao(valor, cliente, acao, contaDestino)) {
+			
+		}
 		
 		
 	}

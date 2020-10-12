@@ -6,6 +6,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.Panel;
+
 import javax.swing.SwingConstants;
 
 import br.com.db.ClienteTemporario;
@@ -22,7 +24,7 @@ public class TelaPrincipal {
 	private static final String LBL_TRANSFERIR = "TRANSFERIR";
 	private static final String LBL_DEPOSITAR = "DEPOSITAR";
 	private static final String LBL_SACAR = "SACAR";
-	private JFrame frame;
+	private static JFrame frame;
 	private JLabel labelSaldo;
 	private JLabel labelConta;
 	private JLabel labelNomeCliente;
@@ -33,6 +35,7 @@ public class TelaPrincipal {
 	private JButton btnNewButton;
 	private JButton btnNewButton_1;
 	private JButton btnNewButton_2;
+	private static JPanel panel;
 	
 	
 	/**
@@ -51,13 +54,11 @@ public class TelaPrincipal {
 	}
 
 
-
 	public TelaPrincipal(ClienteTemporario clienteTemporario) {
 		telaUtil = new TelaUtil();
 		this.clienteTemporario = clienteTemporario;
 		initialize();			
 	}
-
 
 
 	/**
@@ -80,7 +81,7 @@ public class TelaPrincipal {
 			
 		});
 		
-		JPanel panel = new JPanel();
+		panel = new JPanel();
 		panel.setBounds(0, 0, 434, 170);
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
@@ -114,9 +115,9 @@ public class TelaPrincipal {
 		btnNewButton = new JButton(LBL_SACAR);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+
 				telaUtil.constroiTelaHibrida(LBL_SACAR, clienteTemporario);
-				frame.dispose();
+
 			}
 		});
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -126,9 +127,9 @@ public class TelaPrincipal {
 		btnNewButton_1 = new JButton(LBL_DEPOSITAR);
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+
 				telaUtil.constroiTelaHibrida(LBL_DEPOSITAR, clienteTemporario);
-				frame.dispose();
+
 			}
 		});
 		btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -138,10 +139,9 @@ public class TelaPrincipal {
 		btnNewButton_2 = new JButton(LBL_TRANSFERIR);
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+
 				telaUtil.constroiTelaHibrida(LBL_TRANSFERIR, clienteTemporario);
-				frame.dispose();
-				
+	
 			}
 		});
 		btnNewButton_2.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -149,4 +149,5 @@ public class TelaPrincipal {
 		panel.add(btnNewButton_2);
 	}
 
+	
 }
