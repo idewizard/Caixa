@@ -4,10 +4,10 @@
 <hibernate-configuration>
  <session-factory >
   <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-  <property name="hibernate.connection.password">superbom</property>
-  <property name="hibernate.connection.url">jdbc:mysql://localhost/bank?serverTimezone=UTC</property>
+  <property name="hibernate.connection.password">faboca</property>
+  <property name="hibernate.connection.url">jdbc:mysql://177.43.20.179:3306/bank?serverTimezone=UTC</property>
    <property name="hibernate.jdbc.time_zone">UTC</property>
-  <property name="hibernate.connection.username">root</property>
+  <property name="hibernate.connection.username">fabio</property>
   <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
   <mapping class="br.com.nubank.Cliente" resource="Cliente.hbm.xml"/>
   <mapping class="br.com.nubank.Pessoa" resource="Pessoa.hbm.xml"/>
