@@ -14,7 +14,7 @@ public class BancoUtil {
 	private Cliente cliente;
 	private ClienteTemporario clienteTemporario;
 	
-	public ClienteTemporario efetuaAcao(double valor, ClienteTemporario cliente, String acao,Integer... contaDestino) {
+	public ClienteTemporario efetuaAcao(double valor, ClienteTemporario cliente, String acao,int contaDestino) {
 		
 		hibernateUtil = new HibernateUtil();	
 		clienteTemporario =  hibernateUtil.loginCheck(cliente.getNumeroConta(),
@@ -30,15 +30,21 @@ public class BancoUtil {
 				if(!(saque(valor) == null))return this.clienteTemporario;				
 			}
 			case "DEPOSITAR": {
-				
+				if(!(deposita(valor) == null))return this.clienteTemporario;	
 				break;
 			}
 			case "TRANSFERIR": {
-				
-				break;
+				if(!(transfere(valor, contaDestino) == null ))return this.clienteTemporario;
 			}
 			default:
-				throw new IllegalArgumentException("VISH DEU RUIM: " + acao);
+				JOptionPane.showMessageDialog(null,"Algo deu errado :(");
+				
+				this.cliente = (Cliente) hibernateUtil.recoverFromDB(Cliente.class, cliente.getNumeroConta());
+				this.clienteTemporario.setSaldo(this.cliente.getSaldo());
+				this.clienteTemporario.setNome(this.cliente.getNome());
+				this.clienteTemporario.setNumeroConta(this.cliente.getNumeroConta());
+				
+				return this.clienteTemporario;						
 			}
 			
 		}else {
@@ -64,8 +70,43 @@ public class BancoUtil {
 		
 	}
 	
-	private void transfere() {}
+	private ClienteTemporario transfere(double valor, int contaDestino) {
+		
+		if(this.cliente.getSaldo() >= valor) {
+			
+			//pega o primeiro cliente que esta no objeto cliente e efetua a subtracao do valor
+			this.cliente.setSaldo(this.cliente.getSaldo() - valor);
+			int contaOrigem = this.cliente.getNumeroConta();
+			hibernateUtil.saveToDB(this.cliente);
+			
+			//apos salvar no banco (linha acima) ele busca um novo cliente usando a consta destino e
+			//adiciona o valor
+			this.cliente = (Cliente) hibernateUtil.recoverFromDB(Cliente.class, contaDestino);
+			this.cliente.setSaldo(this.cliente.getSaldo() + valor);
+			
+			//novamente chama o cliente original e passa ele para um remporario para retornar
+			this.cliente = (Cliente) hibernateUtil.recoverFromDB(Cliente.class, contaOrigem);
+			this.clienteTemporario.setSaldo(this.cliente.getSaldo());
+			this.clienteTemporario.setNome(this.cliente.getNome());
+			this.clienteTemporario.setNumeroConta(this.cliente.getNumeroConta());
+			
+			return this.clienteTemporario;
+		}else {
+			JOptionPane.showMessageDialog(null, "Você não possui saldo suficiente");
+			return null;
+		}
+		
+	}
 	
-	private void deposita() {}
+	private ClienteTemporario deposita(double valor) {
+		
+		this.cliente.setSaldo(this.cliente.getSaldo() + valor);
+		hibernateUtil.saveToDB(this.cliente);		
+		this.clienteTemporario.setSaldo(this.cliente.getSaldo());
+		this.clienteTemporario.setNome(this.cliente.getNome());
+		this.clienteTemporario.setNumeroConta(this.cliente.getNumeroConta());
+		
+		return this.clienteTemporario;
+	}
 
 }

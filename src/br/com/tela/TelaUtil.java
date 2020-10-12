@@ -3,10 +3,12 @@ package br.com.tela;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
+import com.sun.istack.Nullable;
 
 import br.com.db.ClienteTemporario;
 import br.com.db.HibernateUtil;
 import br.com.nubank.BancoUtil;
+import net.bytebuddy.implementation.bind.annotation.Empty;
 
 public class TelaUtil {
 	
@@ -49,12 +51,12 @@ public class TelaUtil {
 		
 	}
 	
-	protected void efetuaAcaoHibrida(double valor, ClienteTemporario cliente, String acao, Integer... contaDestino) {
+	protected void efetuaAcaoHibrida(double valor, ClienteTemporario cliente, String acao, @Nullable int contaDestino) {
 		
 		final BancoUtil bancoUtil = new BancoUtil();
 		ClienteTemporario clienteTemporario = bancoUtil.efetuaAcao(valor, cliente, acao, contaDestino);
 		if(!(clienteTemporario== null)) {
-			System.out.println(clienteTemporario.getSaldo()+"");
+			
 			this.telaPrincipal.showTela(clienteTemporario);
 			this.telaHibrida.hideTela();
 		}

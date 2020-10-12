@@ -94,7 +94,17 @@ public class TelaHibrida {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				telaUtil.efetuaAcaoHibrida(Double.parseDouble(valorTextField.getText()), clienteTemporario, textoHibrido);
+				if(contaDestinoTextField.getText().isEmpty()) {
+					telaUtil.efetuaAcaoHibrida(Double.parseDouble(valorTextField.getText()), 
+							clienteTemporario, 
+							textoHibrido,0);
+				}else {
+					telaUtil.efetuaAcaoHibrida(Double.parseDouble(valorTextField.getText()), 
+							clienteTemporario, 
+							textoHibrido, 
+							Integer.parseInt(contaDestinoTextField.getText()));
+				}
+				
 							
 			}
 		});
