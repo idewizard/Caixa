@@ -14,7 +14,7 @@ import java.awt.event.ActionEvent;
 
 public class TelaLogin {
 
-	private JFrame frmNubranco;
+	protected JFrame frmNubranco;
 	private JTextField numeroContaTextField;
 	private JPasswordField senhaField;
 	private TelaUtil telaUtil;
@@ -71,7 +71,8 @@ public class TelaLogin {
 				
 				telaUtil.checaLogin(
 						Integer.parseInt(numeroContaTextField.getText()), 
-						Integer.parseInt(String.valueOf(senhaField.getPassword())));
+						Integer.parseInt(String.valueOf(senhaField.getPassword())),
+						frmNubranco);
 				
 			}
 		});
