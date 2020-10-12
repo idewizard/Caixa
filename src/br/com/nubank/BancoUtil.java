@@ -27,7 +27,8 @@ public class BancoUtil {
 			
 			switch (acao) {
 			case "SACAR": {
-				if(!(saque(valor) == null))return this.clienteTemporario;				
+				if(!(saque(valor) == null))return this.clienteTemporario;
+				break;
 			}
 			case "DEPOSITAR": {
 				if(!(deposita(valor) == null))return this.clienteTemporario;	
@@ -35,6 +36,7 @@ public class BancoUtil {
 			}
 			case "TRANSFERIR": {
 				if(!(transfere(valor, contaDestino) == null ))return this.clienteTemporario;
+				break;
 			}
 			default:
 				JOptionPane.showMessageDialog(null,"Algo deu errado :(");
