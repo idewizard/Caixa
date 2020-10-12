@@ -72,7 +72,8 @@ public class TelaLogin {
 				telaUtil.checaLogin(
 						Integer.parseInt(numeroContaTextField.getText()), 
 						Integer.parseInt(String.valueOf(senhaField.getPassword())),
-						frmNubranco);				
+						frmNubranco,
+						telaUtil);				
 			}
 		});
 		

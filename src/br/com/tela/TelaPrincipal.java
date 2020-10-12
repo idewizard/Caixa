@@ -54,8 +54,8 @@ public class TelaPrincipal {
 	}
 
 
-	public TelaPrincipal(ClienteTemporario clienteTemporario) {
-		this.telaUtil = new TelaUtil();
+	public TelaPrincipal(ClienteTemporario clienteTemporario, TelaUtil telaUtil) {
+		this.telaUtil = telaUtil;
 		this.clienteTemporario = clienteTemporario;
 		initialize();			
 	}

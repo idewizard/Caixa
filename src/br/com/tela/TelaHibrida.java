@@ -54,8 +54,8 @@ public class TelaHibrida {
 	 * @param acao 
 	 * @param telaUtil 
 	 */
-	public TelaHibrida(String acao, ClienteTemporario clienteTemporario) {
-		this.telaUtil = new TelaUtil();
+	public TelaHibrida(String acao, ClienteTemporario clienteTemporario, TelaUtil telaUtil) {
+		this.telaUtil = telaUtil;
 		this.textoHibrido = acao;
 		this.clienteTemporario = clienteTemporario;
 		initialize();

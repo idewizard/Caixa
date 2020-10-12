@@ -14,7 +14,6 @@ public class TelaUtil {
 	private TelaPrincipal telaPrincipal;
 	private TelaHibrida telaHibrida;
 	private TelaUtil telaUtil;
-	
 
 	
 	public TelaUtil() {
@@ -22,9 +21,10 @@ public class TelaUtil {
 	}
 
 	//passa login e senha e a janela 
-	public void checaLogin(int numeroConta, int senha, JFrame frame) {	
+	public void checaLogin(int numeroConta, int senha, JFrame frame, TelaUtil telaUtil) {	
 		
 		hb = new HibernateUtil();		
+		this.telaUtil = telaUtil;
 			
 		//passa senha e numero da conta para checar, caso confirmado
 		//retorna um objeto com os dados necessarios
@@ -33,7 +33,7 @@ public class TelaUtil {
 		if (!(clienteTemporario == null)) {
 			JOptionPane.showMessageDialog(null, "Bem Vindo!");
 			frame.dispose();
-			this.telaPrincipal = new TelaPrincipal(clienteTemporario);
+			this.telaPrincipal = new TelaPrincipal(clienteTemporario, this.telaUtil);
 			this.telaPrincipal.iniciaTela(telaPrincipal);			
 		}else {
 			hb.closeConections();
@@ -43,8 +43,10 @@ public class TelaUtil {
 	}
 	
 	public void constroiTelaHibrida(String acao, ClienteTemporario clienteTemporario) {
-		this.telaHibrida = new TelaHibrida(acao.toUpperCase(),clienteTemporario);
+		
+		this.telaHibrida = new TelaHibrida(acao.toUpperCase(),clienteTemporario,this.telaUtil);
 		this.telaHibrida.iniciaTela(telaHibrida);		
+		
 	}
 	
 	protected void efetuaAcaoHibrida(double valor, ClienteTemporario cliente, String acao, Integer... contaDestino) {
