@@ -60,34 +60,34 @@ public class HibernateUtil {
 	  	
 	  	public boolean loginCheck(int numeroConta, int senha) {
 	  		
-	  		try {
-		  		Cliente c = (Cliente) recoverFromDB(Cliente.class, numeroConta);
-		  		if(c == null) {
-		  			JOptionPane.showMessageDialog(null, "Cliente não cadastrado");
-		  			return false;
-		  		}else if(c.getNumeroConta() == numeroConta) {
-		  			if(c.getSenha() == senha) {
-		  				JOptionPane.showMessageDialog(null, "Bem Vindo!");
-		  				return true;
-		  			}else {
-		  				JOptionPane.showMessageDialog(null, "Senha Incorreta");
-		  				return false;
-		  			}
-		  		}
-	  		}catch (Exception e) {
-	  			
-	  			e.printStackTrace();
-	  		}
-	  		
-	  		return false;
+			try {
+				
+				final Cliente cliente = (Cliente) recoverFromDB(Cliente.class, numeroConta);
+				
+				if (cliente == null) {
+					
+					JOptionPane.showMessageDialog(null, "Cliente não cadastrado");
+					return false;
+					
+				} else if (cliente.getNumeroConta() == numeroConta && cliente.getSenha() == senha) {
+					
+					JOptionPane.showMessageDialog(null, "Bem Vindo!");
+					return true;
+					
+				}else {
+					
+					JOptionPane.showMessageDialog(null, "Login ou senha incorretos");
+					return false;
+					
+				}		
+				
+				
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+			return false;
 	  	}
-		
-		public void closesConection() {				
-			session.flush();
-			factory.close();
-			session.close();			
-		}   
-		            
-		
 	
 }
