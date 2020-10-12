@@ -1,7 +1,9 @@
 package br.com.tela;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
+import br.com.db.ClienteTemporario;
 import br.com.db.HibernateUtil;
 
 public class TelaUtil {
@@ -12,11 +14,22 @@ public class TelaUtil {
 	//passa login e senha e a janela 
 	public boolean checaLogin(int numeroConta, int senha, JFrame frame) {		
 		hb = new HibernateUtil();		
-		validLogin = hb.loginCheck(numeroConta, senha);		
-		if (validLogin) {
-			System.out.println("abrindo tela de usuario");
+			
+		//passa senha e numero da conta para checar, caso confirmado
+		//retorna um objeto com os dados necessarios
+		ClienteTemporario clienteTemporario = hb.loginCheck(numeroConta, senha);
+		
+		if (!(clienteTemporario == null)) {
+			JOptionPane.showMessageDialog(null, "Bem Vindo!");
 			frame.dispose();
-		}		
+			TelaPrincipal telaPrincipal = new TelaPrincipal(clienteTemporario.getSaldo(),
+					clienteTemporario.getNumeroConta(),
+					clienteTemporario.getNome());
+			telaPrincipal.IniciaTela(telaPrincipal);
+			
+		}else {
+			JOptionPane.showMessageDialog(null, "Login ou senha incorretos");
+		}
 		return validLogin;		
 	}
 	

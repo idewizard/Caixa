@@ -14,16 +14,21 @@ import java.awt.event.ActionEvent;
 public class TelaPrincipal {
 
 	private JFrame frame;
+	private JLabel labelSaldo;
+	private JLabel labelConta;
+	private JLabel labelNomeCliente;
+	private JLabel labelCifrao;
+	private JLabel labelNumeroConta;
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	public void IniciaTela(TelaPrincipal tela) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					TelaPrincipal window = new TelaPrincipal();
-					window.frame.setVisible(true);
+					//TelaPrincipal window = new TelaPrincipal(this.saldo, this.conta, this.nome);
+					tela.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -31,11 +36,14 @@ public class TelaPrincipal {
 		});
 	}
 
-	/**
-	 * Create the application.
-	 */
-	public TelaPrincipal() {
-		initialize();
+
+
+	public TelaPrincipal(double labelSaldo, int labelConta, String labelNomeCliente) {
+		
+		initialize();		
+		this.labelSaldo.setText(String.valueOf(labelSaldo));
+		this.labelNumeroConta.setText(String.valueOf(labelConta));
+		this.labelNomeCliente.setText(labelNomeCliente);
 	}
 
 	/**
@@ -52,31 +60,31 @@ public class TelaPrincipal {
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("5,485.55");
-		lblNewLabel.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblNewLabel.setBounds(302, 11, 122, 14);
-		panel.add(lblNewLabel);
+		labelSaldo = new JLabel("5,485.55");
+		labelSaldo.setHorizontalAlignment(SwingConstants.RIGHT);
+		labelSaldo.setFont(new Font("Tahoma", Font.BOLD, 12));
+		labelSaldo.setBounds(302, 11, 122, 14);
+		panel.add(labelSaldo);
 		
-		JLabel lblNewLabel_1 = new JLabel("Conta:");
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblNewLabel_1.setBounds(10, 30, 46, 14);
-		panel.add(lblNewLabel_1);
+		labelConta = new JLabel("Conta:");
+		labelConta.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		labelConta.setBounds(10, 30, 46, 14);
+		panel.add(labelConta);
 		
-		JLabel lblNewLabel_2 = new JLabel("Jos\u00E9 Francisco da Costa");
-		lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblNewLabel_2.setBounds(10, 11, 288, 14);
-		panel.add(lblNewLabel_2);
+		labelNomeCliente = new JLabel("Jos\u00E9 Francisco da Costa");
+		labelNomeCliente.setFont(new Font("Tahoma", Font.BOLD, 12));
+		labelNomeCliente.setBounds(10, 11, 288, 14);
+		panel.add(labelNomeCliente);
 		
-		JLabel lblNewLabel_3 = new JLabel("R$");
-		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblNewLabel_3.setBounds(274, 11, 26, 14);
-		panel.add(lblNewLabel_3);
+		labelCifrao = new JLabel("R$");
+		labelCifrao.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		labelCifrao.setBounds(274, 11, 26, 14);
+		panel.add(labelCifrao);
 		
-		JLabel lblNewLabel_4 = new JLabel("2154");
-		lblNewLabel_4.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblNewLabel_4.setBounds(54, 31, 46, 14);
-		panel.add(lblNewLabel_4);
+		labelNumeroConta = new JLabel("2154");
+		labelNumeroConta.setFont(new Font("Tahoma", Font.BOLD, 12));
+		labelNumeroConta.setBounds(54, 31, 46, 14);
+		panel.add(labelNumeroConta);
 		
 		JButton btnNewButton = new JButton("SACAR");
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -93,4 +101,5 @@ public class TelaPrincipal {
 		btnNewButton_2.setBounds(10, 124, 414, 23);
 		panel.add(btnNewButton_2);
 	}
+
 }
