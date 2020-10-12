@@ -115,12 +115,18 @@ public class TelaHibrida {
 	
 	public void showTela(ClienteTemporario clienteTemporario) {
 		updateFields(clienteTemporario);
-		frmHibrido.revalidate();
-		frmHibrido.repaint();
+		panel.revalidate();
+		panel.repaint();
+		panel.updateUI();
 		frmHibrido.setVisible(true);
 	}
 	
 	public void updateFields(ClienteTemporario clienteTemporario) {
+		
+		if(!(labelSaldo == null)) {
+			panel.remove(labelSaldo);
+			panel.remove(labelConta);
+		}
 		
 		labelSaldo = new JLabel(String.valueOf(clienteTemporario.getSaldo()));
 		labelSaldo.setHorizontalAlignment(SwingConstants.RIGHT);

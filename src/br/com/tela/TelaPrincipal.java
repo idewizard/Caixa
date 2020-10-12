@@ -134,8 +134,10 @@ public class TelaPrincipal {
 	public void showTela(ClienteTemporario clienteTemporario) {
 		
 		updateFields(clienteTemporario);
-		frame.revalidate();
-		frame.repaint();
+		panel.revalidate();
+		panel.repaint();
+		panel.updateUI();
+		
 		frame.setVisible(true);
 		
 	}
@@ -145,6 +147,11 @@ public class TelaPrincipal {
 	}
 	
 	private void updateFields(ClienteTemporario clienteTemporario) {
+		
+		if(!(labelSaldo == null)) {
+			panel.remove(labelSaldo);
+			panel.remove(labelConta);
+		}
 		
 		labelSaldo = new JLabel(String.valueOf(clienteTemporario.getSaldo()));
 		labelSaldo.setHorizontalAlignment(SwingConstants.RIGHT);

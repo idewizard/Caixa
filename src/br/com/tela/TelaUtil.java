@@ -52,11 +52,10 @@ public class TelaUtil {
 	protected void efetuaAcaoHibrida(double valor, ClienteTemporario cliente, String acao, Integer... contaDestino) {
 		
 		final BancoUtil bancoUtil = new BancoUtil();
-		
-		if(!(bancoUtil.efetuaAcao(valor, cliente, acao, contaDestino) == null)) {
-			cliente = bancoUtil.efetuaAcao(valor, cliente, acao, contaDestino);
-			System.out.println(cliente.getSaldo()+"");
-			this.telaPrincipal.showTela(cliente);
+		ClienteTemporario clienteTemporario = bancoUtil.efetuaAcao(valor, cliente, acao, contaDestino);
+		if(!(clienteTemporario== null)) {
+			System.out.println(clienteTemporario.getSaldo()+"");
+			this.telaPrincipal.showTela(clienteTemporario);
 			this.telaHibrida.hideTela();
 		}
 		
