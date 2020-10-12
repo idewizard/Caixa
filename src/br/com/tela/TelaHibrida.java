@@ -35,6 +35,7 @@ public class TelaHibrida {
 	private String textoHibrido;
 	private TelaUtil telaUtil;
 	private JPanel panel ;
+	private JButton btnNewButton;
 	/**
 	 * Launch the application.
 	 */
@@ -90,7 +91,7 @@ public class TelaHibrida {
 		panel.add(contaDestinoTextField);
 		contaDestinoTextField.setColumns(10);
 		
-		JButton btnNewButton = new JButton(textoHibrido);
+		btnNewButton = new JButton(textoHibrido);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -123,7 +124,8 @@ public class TelaHibrida {
 		frmHibrido.setVisible(false);
 	}
 	
-	public void showTela(ClienteTemporario clienteTemporario) {
+	public void showTela(String acao,ClienteTemporario clienteTemporario) {
+		textoHibrido = acao;
 		updateFields(clienteTemporario);
 		panel.revalidate();
 		panel.repaint();
@@ -135,8 +137,14 @@ public class TelaHibrida {
 		
 		if(!(labelSaldo == null)) {
 			panel.remove(labelSaldo);
-			panel.remove(labelConta);
+			panel.remove(labelNomeCliente);
+			panel.remove(labelNumeroConta);
+			
+			btnNewButton.setText(textoHibrido);
+			frmHibrido.setTitle(textoHibrido);
 		}
+		
+		
 		
 		labelSaldo = new JLabel(String.valueOf(clienteTemporario.getSaldo()));
 		labelSaldo.setHorizontalAlignment(SwingConstants.RIGHT);

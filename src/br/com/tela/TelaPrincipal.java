@@ -150,7 +150,8 @@ public class TelaPrincipal {
 		
 		if(!(labelSaldo == null)) {
 			panel.remove(labelSaldo);
-			panel.remove(labelConta);
+			panel.remove(labelNumeroConta);
+			panel.remove(labelNomeCliente);
 		}
 		
 		labelSaldo = new JLabel(String.valueOf(clienteTemporario.getSaldo()));

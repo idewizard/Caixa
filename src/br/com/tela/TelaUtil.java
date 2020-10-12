@@ -16,7 +16,7 @@ public class TelaUtil {
 	private TelaPrincipal telaPrincipal;
 	private TelaHibrida telaHibrida;
 	private TelaUtil telaUtil;
-
+	private ClienteTemporario clienteTemporario;
 	
 	public TelaUtil() {
 		// TODO Auto-generated constructor stub
@@ -35,6 +35,7 @@ public class TelaUtil {
 		if (!(clienteTemporario == null)) {
 			JOptionPane.showMessageDialog(null, "Bem Vindo!");
 			frame.dispose();
+			this.clienteTemporario = clienteTemporario;
 			this.telaPrincipal = new TelaPrincipal(clienteTemporario, this.telaUtil);
 			this.telaPrincipal.iniciaTela(telaPrincipal);			
 		}else {
@@ -46,8 +47,14 @@ public class TelaUtil {
 	
 	public void constroiTelaHibrida(String acao, ClienteTemporario clienteTemporario) {
 		
-		this.telaHibrida = new TelaHibrida(acao.toUpperCase(),clienteTemporario,this.telaUtil);
-		this.telaHibrida.iniciaTela(telaHibrida);		
+		if (this.telaHibrida == null) {
+			this.telaHibrida = new TelaHibrida(acao.toUpperCase(),clienteTemporario,this.telaUtil);
+			this.telaHibrida.iniciaTela(telaHibrida);
+		}else {
+			this.telaHibrida.showTela(acao.toUpperCase(),this.clienteTemporario);
+			this.telaPrincipal.hideTela();
+		}
+				
 		
 	}
 	
@@ -56,7 +63,7 @@ public class TelaUtil {
 		final BancoUtil bancoUtil = new BancoUtil();
 		ClienteTemporario clienteTemporario = bancoUtil.efetuaAcao(valor, cliente, acao, contaDestino);
 		if(!(clienteTemporario== null)) {
-			
+			this.clienteTemporario = clienteTemporario;
 			this.telaPrincipal.showTela(clienteTemporario);
 			this.telaHibrida.hideTela();
 		}

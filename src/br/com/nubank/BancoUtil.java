@@ -83,6 +83,9 @@ public class BancoUtil {
 			//adiciona o valor
 			this.cliente = (Cliente) hibernateUtil.recoverFromDB(Cliente.class, contaDestino);
 			this.cliente.setSaldo(this.cliente.getSaldo() + valor);
+			hibernateUtil.saveToDB(this.cliente);
+			JOptionPane.showMessageDialog(null, "Valor de R$ " + valor +" Transferido para "
+					+ "\n"+this.cliente.getNome());
 			
 			//novamente chama o cliente original e passa ele para um remporario para retornar
 			this.cliente = (Cliente) hibernateUtil.recoverFromDB(Cliente.class, contaOrigem);
