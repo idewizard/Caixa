@@ -6,14 +6,11 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import br.com.db.HibernateUtil;
 
 import javax.swing.JButton;
 import javax.swing.JPasswordField;
 import javax.swing.JLabel;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import java.awt.event.ActionEvent;
 
 public class TelaLogin {

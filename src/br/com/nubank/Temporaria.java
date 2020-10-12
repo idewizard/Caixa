@@ -2,7 +2,7 @@ package br.com.nubank;
 
 import br.com.db.HibernateUtil;
 
-public class temporaria {
+public class Temporaria {
 
 	public static void main(String[] args) {
 		

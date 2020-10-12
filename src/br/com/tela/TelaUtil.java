@@ -8,7 +8,7 @@ import br.com.db.HibernateUtil;
 
 public class TelaUtil {
 	
-	private boolean validLogin = false;
+
 	private HibernateUtil hb;
 	
 	//passa login e senha e a janela 
@@ -25,7 +25,7 @@ public class TelaUtil {
 			TelaPrincipal telaPrincipal = new TelaPrincipal(clienteTemporario.getSaldo(),
 					clienteTemporario.getNumeroConta(),
 					clienteTemporario.getNome());
-			telaPrincipal.IniciaTela(telaPrincipal);			
+			telaPrincipal.iniciaTela(telaPrincipal);			
 		}else {
 			hb.closeConections();
 			JOptionPane.showMessageDialog(null, "Login ou senha incorretos");

@@ -28,7 +28,7 @@ public class TelaPrincipal {
 	/**
 	 * Launch the application.
 	 */
-	public void IniciaTela(TelaPrincipal tela) {
+	public void iniciaTela(TelaPrincipal tela) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
