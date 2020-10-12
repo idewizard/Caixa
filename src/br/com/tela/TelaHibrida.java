@@ -22,7 +22,7 @@ import java.awt.event.ActionEvent;
 
 public class TelaHibrida {
 
-	private JFrame frmTransferir;
+	private static JFrame frmTransferir;
 	private JLabel labelSaldo;
 	private JLabel labelConta;
 	private JLabel labelNomeCliente;
@@ -35,7 +35,7 @@ public class TelaHibrida {
 	private JLabel lblValor;
 	private String textoHibrido;
 	private TelaUtil telaUtil;
-	
+	private static TelaPrincipal telaPrincipal;
 	/**
 	 * Launch the application.
 	 */
@@ -137,4 +137,11 @@ public class TelaHibrida {
 		
 		
 	}
+	
+	public static void acaoBemSucedida(ClienteTemporario clienteTemporario) {
+		frmTransferir.dispose();
+		telaPrincipal = new TelaPrincipal(clienteTemporario);
+		telaPrincipal.iniciaTela(telaPrincipal);
+	}
+	
 }

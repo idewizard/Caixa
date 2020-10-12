@@ -87,7 +87,6 @@ public class HibernateUtil {
 	}
 
 	public void closeEverthing() {
-		transaction.rollback();
 		session.flush();
 		session.close();
 		session.disconnect();

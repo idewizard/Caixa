@@ -6,6 +6,7 @@ import com.sun.istack.Nullable;
 
 import br.com.db.ClienteTemporario;
 import br.com.db.HibernateUtil;
+import br.com.tela.TelaHibrida;
 
 public class BancoUtil {
 	
@@ -51,6 +52,7 @@ public class BancoUtil {
 		if(this.cliente.getSaldo() >= valor) {
 			this.cliente.setSaldo(this.cliente.getSaldo() - valor);
 			hibernateUtil.saveToDB(this.cliente);
+			TelaHibrida.acaoBemSucedida(clienteTemporario);
 		}else {
 			JOptionPane.showMessageDialog(null, "Você não possui saldo suficiente");
 		}

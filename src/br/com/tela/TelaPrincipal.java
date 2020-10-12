@@ -116,7 +116,7 @@ public class TelaPrincipal {
 			public void actionPerformed(ActionEvent e) {
 				
 				telaUtil.constroiTelaHibrida(LBL_SACAR, clienteTemporario);
-				
+				frame.dispose();
 			}
 		});
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -128,7 +128,7 @@ public class TelaPrincipal {
 			public void actionPerformed(ActionEvent e) {
 				
 				telaUtil.constroiTelaHibrida(LBL_DEPOSITAR, clienteTemporario);
-				
+				frame.dispose();
 			}
 		});
 		btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -140,7 +140,7 @@ public class TelaPrincipal {
 			public void actionPerformed(ActionEvent e) {
 				
 				telaUtil.constroiTelaHibrida(LBL_TRANSFERIR, clienteTemporario);
-				
+				frame.dispose();
 				
 			}
 		});
