@@ -45,7 +45,17 @@ public class Cliente extends Pessoa implements Serializable{
 			write = "aes_encrypt(?,'chaveSegurancaSenha')"
 	)
 	private int senha;
-		
+	
+	private double saldo = 0;
+	
+	public double getSaldo() {
+		return saldo;
+	}
+
+	public void setSaldo(double saldo) {
+		this.saldo = saldo;
+	}
+
 	public int getNumeroConta() {
 		return numeroConta;
 	}
@@ -58,8 +68,8 @@ public class Cliente extends Pessoa implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Cliente [numeroConta = " + numeroConta + ", senha = " + senha + ", Nome = " + getNome() + ", Cpf = "
-				+ getCpf() + "]";
+		return "Cliente [numeroConta = " + numeroConta + ", senha = " + senha + ", saldo = " + saldo + ", Nome = "
+				+ getNome() + ", Cpf = " + getCpf() + "]";
 	}
 	
 	

@@ -20,13 +20,15 @@ public class App {
 		
 		HibernateUtil hb = new HibernateUtil();
 		
-//		hb.saveToDB(c1);
-//		hb.saveToDB(c2);
-//		hb.saveToDB(c3);
+		hb.saveToDB(c1);
+		hb.saveToDB(c2);
+		hb.saveToDB(c3);
 		
-		Cliente ct = (Cliente) hb.recoverFromDB(Cliente.class, 1);
-	
-		System.out.println(ct.toString());
+		for(int x = 1; x <= 3;x++) {
+			Cliente ct = (Cliente) hb.recoverFromDB(Cliente.class, x);			
+			System.out.println(ct.toString());
+		}
+		
 
 	}
 

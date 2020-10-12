@@ -20,8 +20,7 @@ public class HibernateUtil {
 	private Session session;
 	private Transaction t;
 	
-	public HibernateUtil() {
-		
+	public HibernateUtil() {		
 		//Ao criar a classe ela já instancia todas as ferramentas necessarias
 		//para trabalhar o save, update e delete
 		try {
@@ -40,25 +39,27 @@ public class HibernateUtil {
 	}
 		
 		public Object recoverFromDB(Class<?> crs, int numeroConta) {
-			t = session.beginTransaction();
+			if(!session.getTransaction().getStatus().equals(TransactionStatus.ACTIVE)) {
+				t = session.beginTransaction();
+			}
 			Object object = session.get(crs, numeroConta);
 			session.clear();
 			return object;
 		}
 	
 	  	public void saveToDB(Object object) {
-	  		t = session.beginTransaction();
+	  		if(!session.getTransaction().getStatus().equals(TransactionStatus.ACTIVE)) {
+				t = session.beginTransaction();
+			}
 	  		session.saveOrUpdate(object);
 	  		t.commit();
 	  		session.clear();
 	  	}
 		
-		public void closesConection() {
-				
+		public void closesConection() {				
 			session.flush();
 			factory.close();
-			session.close();
-			
+			session.close();			
 		}   
 		            
 		
