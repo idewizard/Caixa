@@ -2,6 +2,7 @@ package br.com.tela;
 
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.Panel;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
@@ -33,6 +34,7 @@ public class TelaHibrida {
 	private JLabel lblValor;
 	private String textoHibrido;
 	private TelaUtil telaUtil;
+	private JPanel panel ;
 	/**
 	 * Launch the application.
 	 */
@@ -75,10 +77,50 @@ public class TelaHibrida {
 		frmHibrido.getContentPane().setLayout(null);
 	
 		
-		JPanel panel = new JPanel();
+		panel = new JPanel();
 		panel.setBounds(0, 0, 434, 170);
 		frmHibrido.getContentPane().add(panel);
 		panel.setLayout(null);
+		
+		//atualiza os campos
+		updateFields(clienteTemporario);
+		
+		contaDestinoTextField = new JTextField();
+		contaDestinoTextField.setBounds(101, 55, 86, 20);
+		panel.add(contaDestinoTextField);
+		contaDestinoTextField.setColumns(10);
+		
+		JButton btnNewButton = new JButton(textoHibrido);
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				telaUtil.efetuaAcaoHibrida(Double.parseDouble(valorTextField.getText()), clienteTemporario, textoHibrido);
+							
+			}
+		});
+		btnNewButton.setBounds(10, 86, 414, 54);
+		panel.add(btnNewButton);
+		
+		valorTextField = new JTextField();
+		valorTextField.setColumns(10);
+		valorTextField.setBounds(338, 55, 86, 20);
+		panel.add(valorTextField);
+		
+		
+	}
+
+	public void hideTela() {		
+		frmHibrido.setVisible(false);
+	}
+	
+	public void showTela(ClienteTemporario clienteTemporario) {
+		updateFields(clienteTemporario);
+		frmHibrido.revalidate();
+		frmHibrido.repaint();
+		frmHibrido.setVisible(true);
+	}
+	
+	public void updateFields(ClienteTemporario clienteTemporario) {
 		
 		labelSaldo = new JLabel(String.valueOf(clienteTemporario.getSaldo()));
 		labelSaldo.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -114,29 +156,6 @@ public class TelaHibrida {
 		lblValor.setBounds(247, 58, 90, 14);
 		panel.add(lblValor);
 		
-		contaDestinoTextField = new JTextField();
-		contaDestinoTextField.setBounds(101, 55, 86, 20);
-		panel.add(contaDestinoTextField);
-		contaDestinoTextField.setColumns(10);
-		
-		JButton btnNewButton = new JButton(textoHibrido);
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				telaUtil.efetuaAcaoHibrida(Double.parseDouble(valorTextField.getText()), clienteTemporario, textoHibrido);
-							
-			}
-		});
-		btnNewButton.setBounds(10, 86, 414, 54);
-		panel.add(btnNewButton);
-		
-		valorTextField = new JTextField();
-		valorTextField.setColumns(10);
-		valorTextField.setBounds(338, 55, 86, 20);
-		panel.add(valorTextField);
-		
-		
 	}
-	
 	
 }

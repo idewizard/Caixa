@@ -86,6 +86,65 @@ public class TelaPrincipal {
 		panel.setBounds(0, 0, 434, 170);
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
+
+		//Atualiza os campos
+		updateFields(clienteTemporario);
+		
+		btnNewButton = new JButton(LBL_SACAR);
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				hideTela();
+				telaUtil.constroiTelaHibrida(LBL_SACAR, clienteTemporario);
+
+			}
+		});
+		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnNewButton.setBounds(10, 56, 414, 23);
+		panel.add(btnNewButton);
+		
+		btnNewButton_1 = new JButton(LBL_DEPOSITAR);
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				hideTela();
+				telaUtil.constroiTelaHibrida(LBL_DEPOSITAR, clienteTemporario);
+
+			}
+		});
+		btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnNewButton_1.setBounds(11, 90, 413, 23);
+		panel.add(btnNewButton_1);
+		
+		btnNewButton_2 = new JButton(LBL_TRANSFERIR);
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				hideTela();
+				telaUtil.constroiTelaHibrida(LBL_TRANSFERIR, clienteTemporario);
+	
+			}
+		});
+		btnNewButton_2.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnNewButton_2.setBounds(10, 124, 414, 23);
+		panel.add(btnNewButton_2);
+	}
+
+
+	public void showTela(ClienteTemporario clienteTemporario) {
+		
+		updateFields(clienteTemporario);
+		frame.revalidate();
+		frame.repaint();
+		frame.setVisible(true);
+		
+	}
+		
+	public void hideTela() {
+		frame.setVisible(false);
+	}
+	
+	private void updateFields(ClienteTemporario clienteTemporario) {
 		
 		labelSaldo = new JLabel(String.valueOf(clienteTemporario.getSaldo()));
 		labelSaldo.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -113,41 +172,6 @@ public class TelaPrincipal {
 		labelNumeroConta.setBounds(54, 31, 46, 14);
 		panel.add(labelNumeroConta);
 		
-		btnNewButton = new JButton(LBL_SACAR);
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-
-				telaUtil.constroiTelaHibrida(LBL_SACAR, clienteTemporario);
-
-			}
-		});
-		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnNewButton.setBounds(10, 56, 414, 23);
-		panel.add(btnNewButton);
-		
-		btnNewButton_1 = new JButton(LBL_DEPOSITAR);
-		btnNewButton_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-
-				telaUtil.constroiTelaHibrida(LBL_DEPOSITAR, clienteTemporario);
-
-			}
-		});
-		btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnNewButton_1.setBounds(11, 90, 413, 23);
-		panel.add(btnNewButton_1);
-		
-		btnNewButton_2 = new JButton(LBL_TRANSFERIR);
-		btnNewButton_2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-
-				telaUtil.constroiTelaHibrida(LBL_TRANSFERIR, clienteTemporario);
-	
-			}
-		});
-		btnNewButton_2.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnNewButton_2.setBounds(10, 124, 414, 23);
-		panel.add(btnNewButton_2);
 	}
 
 	

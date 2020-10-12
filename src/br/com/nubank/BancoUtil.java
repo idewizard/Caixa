@@ -14,7 +14,7 @@ public class BancoUtil {
 	private Cliente cliente;
 	private ClienteTemporario clienteTemporario;
 	
-	public boolean efetuaAcao(double valor, ClienteTemporario cliente, String acao,Integer... contaDestino) {
+	public ClienteTemporario efetuaAcao(double valor, ClienteTemporario cliente, String acao,Integer... contaDestino) {
 		
 		hibernateUtil = new HibernateUtil();	
 		clienteTemporario =  hibernateUtil.loginCheck(cliente.getNumeroConta(),
@@ -27,7 +27,7 @@ public class BancoUtil {
 			
 			switch (acao) {
 			case "SACAR": {
-				return saque(valor);				
+				if(!(saque(valor) == null))return this.clienteTemporario;				
 			}
 			case "DEPOSITAR": {
 				
@@ -45,18 +45,21 @@ public class BancoUtil {
 			JOptionPane.showMessageDialog(null, "CLIENTE NULO");
 		}
 		
-		return false;
+		return null;
 	}
 	
-	private boolean saque(double valor) {
+	private ClienteTemporario saque(double valor) {
 		
 		if(this.cliente.getSaldo() >= valor) {
 			this.cliente.setSaldo(this.cliente.getSaldo() - valor);
-			hibernateUtil.saveToDB(this.cliente);
-			return true;
+			hibernateUtil.saveToDB(this.cliente);		
+			this.clienteTemporario.setSaldo(this.cliente.getSaldo());
+			this.clienteTemporario.setNome(this.cliente.getNome());
+			this.clienteTemporario.setNumeroConta(this.cliente.getNumeroConta());
+			return this.clienteTemporario;
 		}else {
 			JOptionPane.showMessageDialog(null, "Você não possui saldo suficiente");
-			return false;
+			return null;
 		}
 		
 	}
