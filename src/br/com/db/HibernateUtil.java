@@ -19,7 +19,7 @@ public class HibernateUtil {
 	private Metadata meta;
 	private SessionFactory factory;
 	private Session session;
-	private Transaction t;
+	private Transaction transaction;
 	
 	public HibernateUtil() {		
 		//Ao criar a classe ela já instancia todas as ferramentas necessarias
@@ -39,46 +39,60 @@ public class HibernateUtil {
 		
 	}
 		
-		public Object recoverFromDB(Class<?> crs, int numeroConta) {
-			if(!session.getTransaction().getStatus().equals(TransactionStatus.ACTIVE)) {
-				t = session.beginTransaction();
-			}
-			Object object = session.get(crs, numeroConta);
-			session.clear();
-			return object;
+	public Object recoverFromDB(Class<?> crs, int numeroConta) {
+		if(!session.getTransaction().getStatus().equals(TransactionStatus.ACTIVE)) {
+			transaction = session.beginTransaction();
 		}
-	
-	  	public void saveToDB(Object object) {
-	  		if(!session.getTransaction().getStatus().equals(TransactionStatus.ACTIVE)) {
-				t = session.beginTransaction();
-			}
-	  		session.saveOrUpdate(object);
-	  		t.commit();
-	  		session.clear();
-	  	}
-	  	
-	  	public ClienteTemporario loginCheck(int numeroConta, int senha) {
-	  		
-			try {
-				
-				final Cliente cliente = (Cliente) recoverFromDB(Cliente.class, numeroConta);
-				final ClienteTemporario clienteTemporario;
-				
-				if (cliente == null) {		
-					return null;					
-				} else if (cliente.getNumeroConta() == numeroConta && cliente.getSenha() == senha) {
-					clienteTemporario = new ClienteTemporario(cliente.getNome(),
-							cliente.getNumeroConta(), cliente.getSaldo());
-					return clienteTemporario;					
-				}else {
-					return null;					
-				}		
-								
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+		Object object = session.get(crs, numeroConta);
+		session.clear();
+		return object;
+	}
+
+  	public void saveToDB(Object object) {
+  		if(!session.getTransaction().getStatus().equals(TransactionStatus.ACTIVE)) {
+			transaction = session.beginTransaction();
+		}
+  		session.saveOrUpdate(object);
+  		transaction.commit();
+  		session.clear();
+  	}
+  	
+  	public ClienteTemporario loginCheck(int numeroConta, int senha) {
+  		
+		try {
 			
-			return null;
-	  	}
-	
+			final Cliente cliente = (Cliente) recoverFromDB(Cliente.class, numeroConta);
+			final ClienteTemporario clienteTemporario;
+			
+			if (cliente == null) {		
+				return null;					
+			} else if (cliente.getNumeroConta() == numeroConta && cliente.getSenha() == senha) {
+				clienteTemporario = new ClienteTemporario(cliente.getNome(),
+						cliente.getNumeroConta(), cliente.getSaldo());
+				return clienteTemporario;					
+			}else {
+				return null;					
+			}		
+							
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return null;
+  	}
+
+	public void closeConections() {
+		transaction.rollback();
+		session.close();
+	}
+
+	public void closeEverthing() {
+		transaction.rollback();
+		session.flush();
+		session.close();
+		session.disconnect();
+		factory.close();
+		
+	}  	
+	  	
 }

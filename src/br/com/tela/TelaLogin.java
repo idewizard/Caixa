@@ -5,10 +5,15 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
+import br.com.db.HibernateUtil;
+
 import javax.swing.JButton;
 import javax.swing.JPasswordField;
 import javax.swing.JLabel;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.awt.event.ActionEvent;
 
 public class TelaLogin {
@@ -54,6 +59,7 @@ public class TelaLogin {
 		frmNubranco.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmNubranco.getContentPane().setLayout(null);
 		
+		
 		JPanel panel = new JPanel();
 		panel.setBounds(0, 0, 170, 160);
 		frmNubranco.getContentPane().add(panel);
@@ -66,8 +72,7 @@ public class TelaLogin {
 		
 		JButton btnNewButton = new JButton("Login");
 		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
+			public void actionPerformed(ActionEvent e) {				
 				telaUtil.checaLogin(
 						Integer.parseInt(numeroContaTextField.getText()), 
 						Integer.parseInt(String.valueOf(senhaField.getPassword())),
@@ -75,6 +80,7 @@ public class TelaLogin {
 				
 			}
 		});
+		
 		btnNewButton.setBounds(10, 123, 149, 23);
 		panel.add(btnNewButton);
 		

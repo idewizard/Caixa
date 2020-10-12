@@ -12,7 +12,7 @@ public class TelaUtil {
 	private HibernateUtil hb;
 	
 	//passa login e senha e a janela 
-	public boolean checaLogin(int numeroConta, int senha, JFrame frame) {		
+	public void checaLogin(int numeroConta, int senha, JFrame frame) {		
 		hb = new HibernateUtil();		
 			
 		//passa senha e numero da conta para checar, caso confirmado
@@ -25,12 +25,12 @@ public class TelaUtil {
 			TelaPrincipal telaPrincipal = new TelaPrincipal(clienteTemporario.getSaldo(),
 					clienteTemporario.getNumeroConta(),
 					clienteTemporario.getNome());
-			telaPrincipal.IniciaTela(telaPrincipal);
-			
+			telaPrincipal.IniciaTela(telaPrincipal);			
 		}else {
+			hb.closeConections();
 			JOptionPane.showMessageDialog(null, "Login ou senha incorretos");
 		}
-		return validLogin;		
+		
 	}
 	
 }
