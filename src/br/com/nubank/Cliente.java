@@ -60,7 +60,9 @@ public class Cliente extends Pessoa implements Serializable{
 		return numeroConta;
 	}
 	
-	//todo criar metodo para validar senhar
+	public int getSenha() {
+		return senha;
+	}
 	
 	protected void setSenha(int senha) {
 		this.senha = senha;

@@ -1,5 +1,7 @@
 package br.com.db;
 
+import javax.swing.JOptionPane;
+
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -54,6 +56,30 @@ public class HibernateUtil {
 	  		session.saveOrUpdate(object);
 	  		t.commit();
 	  		session.clear();
+	  	}
+	  	
+	  	public boolean loginCheck(int numeroConta, int senha) {
+	  		
+	  		try {
+		  		Cliente c = (Cliente) recoverFromDB(Cliente.class, numeroConta);
+		  		if(c == null) {
+		  			JOptionPane.showMessageDialog(null, "Cliente não cadastrado");
+		  			return false;
+		  		}else if(c.getNumeroConta() == numeroConta) {
+		  			if(c.getSenha() == senha) {
+		  				JOptionPane.showMessageDialog(null, "Bem Vindo!");
+		  				return true;
+		  			}else {
+		  				JOptionPane.showMessageDialog(null, "Senha Incorreta");
+		  				return false;
+		  			}
+		  		}
+	  		}catch (Exception e) {
+	  			
+	  			e.printStackTrace();
+	  		}
+	  		
+	  		return false;
 	  	}
 		
 		public void closesConection() {				
