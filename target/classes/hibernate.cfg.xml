@@ -5,7 +5,7 @@
  <session-factory >
   <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
   <property name="hibernate.connection.password">faboca</property>
-  <property name="hibernate.connection.url">jdbc:mysql://177.43.20.179:3306/bank?serverTimezone=UTC</property>
+  <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/bank?serverTimezone=UTC</property>
    <property name="hibernate.jdbc.time_zone">UTC</property>
   <property name="hibernate.connection.username">fabio</property>
   <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
